@@ -1,0 +1,68 @@
+{
+  "format": 1,
+  "protocol": "shard-2",
+  "name": "shard-2-nano",
+  "display_name": "Shard 2 Nano",
+  "version": "1.0.0",
+  "license": "apache-2.0",
+  "io": {
+    "input": {
+      "name": "input",
+      "dtype": "float32",
+      "shape": [
+        "batch",
+        32,
+        6
+      ]
+    },
+    "output": {
+      "name": "prob",
+      "dtype": "float32",
+      "shape": [
+        "batch",
+        1
+      ]
+    }
+  },
+  "window": 32,
+  "stride": 16,
+  "schedule": {
+    "type": "attack",
+    "event": "attack_this_tick",
+    "pre": 16
+  },
+  "threshold": 0.9,
+  "features": [
+    {
+      "name": "delta_yaw",
+      "op": "delta",
+      "column": "yaw"
+    },
+    {
+      "name": "delta_pitch",
+      "op": "delta",
+      "column": "pitch"
+    },
+    {
+      "name": "attack_this_tick",
+      "op": "value",
+      "column": "attack_this_tick"
+    },
+    {
+      "name": "ticks_since_attack",
+      "op": "value",
+      "column": "ticks_since_attack"
+    },
+    {
+      "name": "accel_yaw",
+      "op": "accel",
+      "column": "yaw"
+    },
+    {
+      "name": "accel_pitch",
+      "op": "accel",
+      "column": "pitch"
+    }
+  ],
+  "sha256": "6a219467d7bfaca7d4297b346806480c21ca3c6d94b3b499b6395b40520244f1"
+}
